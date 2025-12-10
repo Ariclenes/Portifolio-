@@ -7,7 +7,7 @@ import { ProfileConfig, Project, Service, SocialLink, EducationItem, ExperienceI
 
 export const PROFILE: ProfileConfig = {
   githubUsername: 'ariclenesmaciel', 
-  // customAvatarUrl: 'https://exemplo.com/minha-foto.jpg',
+  customAvatarUrl: '/ariclenes-enhanced-profile-h2z5s.png',
   fullName: 'Ariclenes Maciel',
   title: 'Systems Analysis & Development Technologist',
   initials: 'AM', 
