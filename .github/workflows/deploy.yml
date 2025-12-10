@@ -29,8 +29,8 @@ jobs:
         ls -la .
         echo "-- package.json --"
         cat package.json
-        echo "-- running npm ci --"
-        npm ci
+        echo "-- running npm install --no-audit --no-fund --no-progress --prefer-offline --no-save --production=false --silent --loglevel=error --scripts-prepend-node-path" 
+        npm install --no-audit --no-fund --no-progress --prefer-offline --no-save --production=false --loglevel=error
     
     - name: Build
       working-directory: ./modern-developer-portfolio
