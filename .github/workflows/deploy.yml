@@ -22,9 +22,15 @@ jobs:
       with:
         node-version: '18'
     
-    - name: Install dependencies
+    - name: Install dependencies (diagnose + install)
       working-directory: ./modern-developer-portfolio
-      run: npm ci --silent
+      run: |
+        echo "-- listing project folder --"
+        ls -la .
+        echo "-- package.json --"
+        cat package.json
+        echo "-- running npm ci --"
+        npm ci
     
     - name: Build
       working-directory: ./modern-developer-portfolio
