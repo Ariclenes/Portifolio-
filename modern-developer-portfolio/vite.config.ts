@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/Portifolio-/modern-developer-portfolio/',
+      // base set for project site: https://Ariclenes.github.io/Portifolio-
+      base: '/Portifolio-/',
       server: {
         port: 3000,
         host: '0.0.0.0',

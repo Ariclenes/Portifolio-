@@ -23,7 +23,12 @@ jobs:
 
       - name: Install dependencies
         working-directory: modern-developer-portfolio
-        run: npm ci
+        run: |
+          if [ -f "modern-developer-portfolio/package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Build
         working-directory: modern-developer-portfolio
