@@ -1,45 +1,43 @@
-name: Deploy to GitHub Pages
+name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - main
+  workflow_dispatch: {}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-    
-    - name: Install dependencies (diagnose + install)
-      working-directory: ./modern-developer-portfolio
-      run: |
-        echo "-- listing project folder --"
-        ls -la .
-        echo "-- package.json --"
-        cat package.json
-        echo "-- running npm install --no-audit --no-fund --no-progress --prefer-offline --no-save --production=false --silent --loglevel=error --scripts-prepend-node-path" 
-        npm install --no-audit --no-fund --no-progress --prefer-offline --no-save --production=false --loglevel=error
-    
-    - name: Build
-      working-directory: ./modern-developer-portfolio
-      run: npm run build
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./modern-developer-portfolio/dist
-        cname: portfolio.ariclenes.dev
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        working-directory: modern-developer-portfolio
+        run: npm ci
+
+      - name: Build
+        working-directory: modern-developer-portfolio
+        run: npm run build
+
+      - name: Ensure .nojekyll
+        run: |
+          if [ -d "modern-developer-portfolio/dist" ]; then
+            touch modern-developer-portfolio/dist/.nojekyll
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: modern-developer-portfolio/dist

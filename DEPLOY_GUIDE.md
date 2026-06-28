@@ -1,79 +1,20 @@
-# 📱 GUIA DE PUBLICAÇÃO NO GITHUB PAGES
+# Deployment guide (auto-added)
 
-## ✅ Pré-requisitos
-- [Git](https://git-scm.com) instalado
-- [GitHub CLI](https://cli.github.com) instalado (`gh auth login` para autenticar)
-- Uma conta GitHub
+This repository contains a Vite + React TypeScript portfolio in the `modern-developer-portfolio/` folder.
 
-## 📋 Passos para Publicar
+A GitHub Actions workflow has been added at `.github/workflows/deploy.yml` that builds the project and deploys the generated `dist/` folder to the `gh-pages` branch using peaceiris/actions-gh-pages.
 
-### 1️⃣ Criar o Repositório no GitHub
-Execute este comando:
+How it works:
+- On push to `main` (or manual dispatch) the workflow will:
+  - Install Node.js and dependencies in the `modern-developer-portfolio` folder
+  - Run `npm run build` to generate `modern-developer-portfolio/dist`
+  - Publish `modern-developer-portfolio/dist` to the `gh-pages` branch
 
-```bash
-cd /workspaces/Portifolio-
-gh repo create modern-developer-portfolio --public --source=. --push --description "Modern Developer Portfolio - Portfólio Pessoal de Ariclenes Maciel"
-```
+After the workflow completes successfully, your site will be available at:
 
-### 2️⃣ Habilitar GitHub Pages
-Depois que o repositório for criado, acesse:
-1. Vá para: `https://github.com/ariclenesmaciel/modern-developer-portfolio`
-2. Clique em **Settings** (Configurações)
-3. Na barra lateral, vá para **Pages**
-4. Em "Build and deployment", selecione:
-   - Source: **GitHub Actions**
-5. O workflow automático será acionado
+https://Ariclenes.github.io/Portifolio-
 
-### 3️⃣ Acessar seu Portfólio Online
-Seu portfólio estará disponível em:
-
-```
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-## 🔗 Links para Compartilhar em Redes Sociais
-
-### WhatsApp
-```
-https://wa.me/244933934838?text=Confira%20meu%20portf%C3%B3lio%20profissional!%20https%3A%2F%2Fariclenesmaciel.github.io%2Fmodern-developer-portfolio%2F
-```
-
-### LinkedIn
-```
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-### Facebook
-```
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-### Instagram Bio Link
-```
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-## 📝 Copiar e Colar Fácil
-
-**Link Principal:**
-```
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-**Descrição para Redes:**
-```
-Confira meu portfólio profissional! Desenvolvido com React, TypeScript e Vite. 
-Tecnólogo em Análise e Desenvolvimento de Sistemas com experiência em Full Stack, 
-ERP, Redes e Segurança Digital. 🚀
-
-https://ariclenesmaciel.github.io/modern-developer-portfolio/
-```
-
-## 🔄 Atualizações Automáticas
-Sempre que você fizer `git push` para a branch `main`, o workflow automático:
-1. ✅ Faz o build do projeto
-2. ✅ Publica automaticamente no GitHub Pages
-3. ✅ Seu site estará atualizado em poucos minutos
-
-## 📞 Suporte
-Se tiver dúvidas sobre GitHub Pages: https://docs.github.com/pt/pages
+Notes & next steps:
+- The first run will create the `gh-pages` branch. You can check Actions > Workflows to see the build/deploy run and logs.
+- If you prefer a user site (https://Ariclenes.github.io) instead of a project site, rename the repository to `Ariclenes.github.io` (I can help with that).
+- If you want to use a custom domain, add a `CNAME` file to `modern-developer-portfolio/public` or create a `CNAME` in the published branch; I can add it if you provide the domain.
